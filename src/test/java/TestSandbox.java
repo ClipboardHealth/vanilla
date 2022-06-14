@@ -8,17 +8,31 @@ import org.openqa.selenium.WebDriver;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeEach;
+
 public class TestSandbox {
     private static Config config = EnvFactory.getInstance().getConfig();
     private static final String HOME_PAGE_URL = config.getString("HOME_PAGE_URL");
-    private WebDriver driver = DriverFactory.getDriver();
+    private static WebDriver driver = DriverFactory.getDriver();
+
+    @BeforeEach
+    public void openBrowser() {
+        driver.get(HOME_PAGE_URL);
+    }
 
     @Tag("smokeTest")
     @DisplayName("This test is for demo purpose only to show that the basic code works." +
             "You have to use the best practices that you normally use to design your tests")
     @Test
     void assertThatHomePageTitleIsCorrect() {
-        driver.get(HOME_PAGE_URL);
-        assertEquals("Amazon.com. Spend less. Smile more.", driver.getTitle());
+        assertEquals(
+                "Online Shopping site in India: Shop Online for Mobiles, Books, Watches, Shoes and More - Amazon.in",
+                driver.getTitle());
+    }
+
+    @AfterAll
+    public static void closeBrowser() {
+        driver.quit();
     }
 }
