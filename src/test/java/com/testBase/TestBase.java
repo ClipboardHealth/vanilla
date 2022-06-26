@@ -3,6 +3,7 @@ package com.testBase;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -12,6 +13,7 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariOptions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.asserts.SoftAssert;
@@ -19,6 +21,7 @@ import org.testng.asserts.SoftAssert;
 import java.io.FileInputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.Properties;
 
 public class TestBase {
@@ -30,6 +33,10 @@ public class TestBase {
     public static WebDriver driver;
     public static Logger log;
     public static SoftAssert st;
+
+    public static JavascriptExecutor je;
+
+    public static WebDriverWait wait;
 
     @BeforeSuite
     public static void openBrowser() throws Throwable {
@@ -79,6 +86,11 @@ public class TestBase {
     }
 
     private static void InitialSetup(WebDriver driver) {
+        je = (JavascriptExecutor) driver;
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        driver.get("https://www.amazon.in/");
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
     }
 
     @AfterSuite
