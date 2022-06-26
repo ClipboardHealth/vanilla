@@ -39,4 +39,9 @@ public class HomePage extends TestBase implements Constants {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
+    public void assertElement(String actual, String expected) {
+        WebElement element = driver.findElement(By.xpath(actual));
+        st.assertEquals(element.getText(), expected);
+    }
+
 }

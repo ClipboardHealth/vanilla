@@ -38,6 +38,13 @@ public class Test1 extends HomePage {
         //Step 7:Click on the second highest priced item
         hp.clickOnElement(Xpath_Second_Result_Item);
         hp.switchToWindow();
+        //Step 8:Assert that “About this item” section is present and log this section text to console/report
+        hp.assertElement(Xpath_About_Item_Header, " About this item ");
+        String aboutItemText = driver.findElement(By.xpath(Xpath_About_Item_Text)).getText();
+        System.out.println("Item Text: " + aboutItemText);
+        driver.close();
+        // Switch back to original browser (first window)
+        driver.switchTo().window(winHandleBefore);
         closeBrowser();
     }
 
