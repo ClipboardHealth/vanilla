@@ -22,19 +22,25 @@ public class DriverFactory {
     private DriverFactory() {
         throw new IllegalStateException("Static factory class");
     }
+    //Making WebDriver instance static as we want to maintain just one object across test execution.
+    private static WebDriver driver = null;
 
     public static WebDriver getDriver() {
+        if (driver != null) return driver;
         log.info("Getting driver for host: {}", HOST);
         switch (HOST) {
             case LOCALHOST:
-                return getLocalWebDriver();
+                driver = getLocalWebDriver();
+                return driver;
             case DOCKER_CONTAINER:
                 // fall through - same options apply.
             case DOCKER_SELENIUM_GRID:
-                return getRemoteWebDriver();
+                driver = getRemoteWebDriver();
+                return driver;
             default:
                 throw new IllegalStateException(String.format("%s is not a valid HOST choice. Pick your HOST from %s.", HOST, java.util.Arrays.asList(Host.values())));
         }
+
     }
 
     private static WebDriver getLocalWebDriver() {

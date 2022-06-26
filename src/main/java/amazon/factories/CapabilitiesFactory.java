@@ -13,6 +13,7 @@ import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.opera.OperaOptions;
 import org.openqa.selenium.remote.CapabilityType;
 
+import java.time.Duration;
 import java.util.Hashtable;
 import java.util.Map;
 import java.util.logging.Level;
@@ -26,6 +27,12 @@ public class CapabilitiesFactory {
     private static final boolean ACCEPT_INSECURE_CERTIFICATES = parseBoolean(config.getString("ACCEPT_INSECURE_CERTIFICATES"));
     private static final String SELENIUM_LOG_LEVEL = config.getString("SELENIUM_LOG_LEVEL");
     private static final String DOWNLOADS_DIR = config.getString("DOWNLOADS_DIR");
+    /*
+        Defining IMPLICIT_WAIT.
+        This will help reduce flakiness when page load is extremely fast.
+        Specially done for headless execution.
+     */
+    private static final Long IMPLICIT_WAIT = Long.valueOf(5);
 
     public static Capabilities getCapabilities(Browser browser) {
         switch (browser) {
@@ -53,6 +60,7 @@ public class CapabilitiesFactory {
         chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
         chromeOptions.addArguments("--enable-javascript");
         chromeOptions.addArguments("--disable-notifications");
+        chromeOptions.setImplicitWaitTimeout(Duration.ofSeconds(IMPLICIT_WAIT));
 
         Map<String, Object> prefs = new Hashtable<String, Object>();
         prefs.put("plugins.always_open_pdf_externally", true);
@@ -71,14 +79,19 @@ public class CapabilitiesFactory {
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         firefoxOptions.setAcceptInsecureCerts(ACCEPT_INSECURE_CERTIFICATES);
         firefoxOptions.setHeadless(HEADLESS);
+        firefoxOptions.setImplicitWaitTimeout(Duration.ofSeconds(IMPLICIT_WAIT));
         return firefoxOptions;
     }
 
     public static OperaOptions getOperaOptions() {
-        return new OperaOptions();
+        OperaOptions operaOptions = new OperaOptions();
+        operaOptions.setImplicitWaitTimeout(Duration.ofSeconds(IMPLICIT_WAIT));
+        return operaOptions;
     }
 
     public static EdgeOptions getEdgeOptions() {
-        return new EdgeOptions();
+        EdgeOptions edgeOptions =  new EdgeOptions();
+        edgeOptions.setImplicitWaitTimeout(Duration.ofSeconds(IMPLICIT_WAIT));
+        return edgeOptions;
     }
 }
