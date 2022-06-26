@@ -57,6 +57,8 @@ public class TestBase {
     }
 
     private static void LocalExecution() {
+        log.info(" Executing test on local ");
+        log.info(" Browser selected " + Browser);
         if (Browser.equalsIgnoreCase("chrome")) {
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
@@ -72,6 +74,8 @@ public class TestBase {
     }
 
     private static void RemoteExecution() throws MalformedURLException {
+        log.info(" Executing test on selenium grid ");
+        log.info(" Browser selected " + Browser);
         String Selenium_Grid_URL = prop.getProperty("Selenium_Grid_URL");
         if (Browser.equalsIgnoreCase("chrome")) {
             driver = new RemoteWebDriver(new URL(Selenium_Grid_URL), new ChromeOptions());

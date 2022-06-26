@@ -45,6 +45,7 @@ public class Test1 extends HomePage {
         driver.close();
         // Switch back to original browser (first window)
         driver.switchTo().window(winHandleBefore);
+        log.info("Test case1 executed Successfully!!!");
         closeBrowser();
     }
 

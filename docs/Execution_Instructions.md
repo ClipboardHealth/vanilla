@@ -9,7 +9,7 @@ Execution is possible in multiple ways :
 3. Right click Test1 file (src/test/java/com/testCases/Test1.java) and select "Run"
 
 # 2. Execution on Selenium Grid :
-`Browser choices are : chrome, firefox, ie, safari(mac)`
+`Browser choices are : chrome, firefox, ie, safari(mac) depending on selenium grid support`
 
 Pre-Requisites :
 1. GlobalProperties.Properties file - 'Env' should be set to 'selenium_grid'
