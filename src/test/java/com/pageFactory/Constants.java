@@ -1,6 +1,6 @@
 package com.pageFactory;
 
-public class Constants {
+public interface Constants {
     String Xpath_Todays_Deals = "//a[contains(text(),\"Today's Deals\")]";
     String Xpath_Hamburger_Menu = "//a[@id='nav-hamburger-menu']";
     String Xpath_TvAppliancesDept_Link = "//a[@class='hmenu-item']/div[contains(text(),'TV, Appliances, Electronics')]";
