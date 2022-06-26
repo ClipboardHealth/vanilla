@@ -1,13 +1,24 @@
 package com.testBase;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.ie.InternetExplorerOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.safari.SafariOptions;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.asserts.SoftAssert;
 
 import java.io.FileInputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Properties;
 
 public class TestBase {
@@ -39,11 +50,31 @@ public class TestBase {
     }
 
     private static void LocalExecution() {
+        if (Browser.equalsIgnoreCase("chrome")) {
+            WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver();
+        } else if (Browser.equalsIgnoreCase("firefox")) {
+            WebDriverManager.firefoxdriver().setup();
+            driver = new FirefoxDriver();
+        } else if (Browser.equalsIgnoreCase("edge")) {
+            WebDriverManager.edgedriver().setup();
+            driver = new EdgeDriver();
+        }
         InitialSetup(driver);
 
     }
 
-    private static void RemoteExecution() {
+    private static void RemoteExecution() throws MalformedURLException {
+        String Selenium_Grid_URL = prop.getProperty("Selenium_Grid_URL");
+        if (Browser.equalsIgnoreCase("chrome")) {
+            driver = new RemoteWebDriver(new URL(Selenium_Grid_URL), new ChromeOptions());
+        } else if (Browser.equalsIgnoreCase("firefox")) {
+            driver = new RemoteWebDriver(new URL(Selenium_Grid_URL), new FirefoxOptions());
+        } else if (Browser.equalsIgnoreCase("ie")) {
+            driver = new RemoteWebDriver(new URL(Selenium_Grid_URL), new InternetExplorerOptions());
+        } else if (Browser.equalsIgnoreCase("safari")) {
+            driver = new RemoteWebDriver(new URL(Selenium_Grid_URL), new SafariOptions());
+        }
         InitialSetup(driver);
     }
 
