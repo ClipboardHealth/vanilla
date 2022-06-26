@@ -19,6 +19,6 @@ public class TestSandbox {
     @Test
     void assertThatHomePageTitleIsCorrect() {
         driver.get(HOME_PAGE_URL);
-        assertEquals("Amazon.com. Spend less. Smile more.", driver.getTitle());
+        assertEquals("Online Shopping site in India: Shop Online for Mobiles, Books, Watches, Shoes and More - Amazon.in", driver.getTitle());
     }
 }
