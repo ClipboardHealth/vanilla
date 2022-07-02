@@ -27,19 +27,19 @@ public class LeftMenu {
 
     public void click_menuitem(String strmenuitem){
         WebElement menuitem=this.driver.findElement(By.xpath("//a/div[contains(text(),"+"'"+strmenuitem+"'"+")]"));
-        this.cc.scrollintoview(this.driver,menuitem);
+        this.cc.scrollintoview(menuitem);
         menuitem.click();
     }
 
     public void click_submenuitem(String strmenuitem){
         WebElement menuitem=this.driver.findElement(By.xpath("//a[contains(text(),"+"'"+strmenuitem+"'"+")]"));
-        this.cc.scrollintoview(this.driver,menuitem);
+        this.cc.scrollintoview(menuitem);
         menuitem.click();
     }
 
     public void click_filtermenu_chkbox(String strmenuitem){
         WebElement menuitem=this.driver.findElement(By.xpath("//a/span[contains(text(),"+"'"+strmenuitem+"'"+") and @class='a-size-base a-color-base']"));
-        this.cc.scrollintoview(this.driver,menuitem);
+        this.cc.scrollintoview(menuitem);
         menuitem.click();
     }
 }
