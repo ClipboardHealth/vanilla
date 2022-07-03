@@ -79,3 +79,5 @@ local.properties
 *.ctxt
 
 build/
+allure-report/
+allure-results/

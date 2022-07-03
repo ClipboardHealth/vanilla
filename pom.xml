@@ -23,6 +23,7 @@
         <lombok.version>1.18.22</lombok.version>
         <slf4j.version>2.0.0-alpha7</slf4j.version>
         <log4j.core>2.17.2</log4j.core>
+        <allure.version>2.18.1</allure.version>
     </properties>
 
     <dependencies>
@@ -93,6 +94,19 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
             <version>${log4j.core}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-selenide -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-selenide</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit5 -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit5</artifactId>
+            <version>${allure.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     <build>

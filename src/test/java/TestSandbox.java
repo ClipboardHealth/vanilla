@@ -3,10 +3,13 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.junit5.ScreenShooterExtension;
 import com.typesafe.config.Config;
+import io.qameta.allure.Allure;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import utils.SetupAndTeardown;
 
@@ -15,6 +18,7 @@ import static com.codeborne.selenide.Condition.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@ExtendWith({ScreenShooterExtension.class})
 public class TestSandbox extends SetupAndTeardown {
     private static Config config = EnvFactory.getInstance().getConfig();
     private static final String HOME_PAGE_URL = config.getString("HOME_PAGE_URL");
@@ -48,9 +52,12 @@ public class TestSandbox extends SetupAndTeardown {
         switchTo().window(1);
         $("#feature-bullets h1").scrollIntoView(true).shouldHave(text(" About this item "));
 
+        StringBuffer aboutThisItem = new StringBuffer();
         ElementsCollection colls = $$("#feature-bullets li");
         for (SelenideElement e : colls) {
             System.out.println(">>>>> " + e.getText());
+            aboutThisItem.append(e.getText() + "\n\n");
         }
+        Allure.addAttachment("About this item", aboutThisItem.toString());
     }
 }
