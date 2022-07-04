@@ -77,3 +77,7 @@ local.properties
 
 # BlueJ files
 *.ctxt
+
+build/
+allure-report/
+allure-results/
