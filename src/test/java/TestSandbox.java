@@ -13,10 +13,10 @@ public class TestSandbox {
     private static final String HOME_PAGE_URL = config.getString("HOME_PAGE_URL");
     private WebDriver driver = DriverFactory.getDriver();
 
-    @Tag("smokeTest")
-    @DisplayName("This test is for demo purpose only to show that the basic code works." +
-            "You have to use the best practices that you normally use to design your tests")
-    @Test
+    //@Tag("smokeTest")
+    //@DisplayName("This test is for demo purpose only to show that the basic code works." +
+    //        "You have to use the best practices that you normally use to design your tests")
+    //@Test
     void assertThatHomePageTitleIsCorrect() {
         driver.get(HOME_PAGE_URL);
         assertEquals("Amazon.com. Spend less. Smile more.", driver.getTitle());
