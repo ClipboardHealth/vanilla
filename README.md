@@ -26,3 +26,37 @@ For easiest way to getting started, extract this project and open it from Intell
 Tip: Do remember to update this readme file for anything else that you think needs updating here!
 
 ## Success
+
+## Dependencies were added to the project
+
+- **[Selenide 6.6.6](https://selenide.org/index.html)**
+- **[Allure-report](https://docs.qameta.io/allure/)**
+
+## Running tests and generating a report
+
+Command to run tests
+> mvn clean test
+
+When the tests are done.
+Then the folder allure-results will be automatically created in the root of the project
+
+<p align="left"><img src="../vanilla/docs/allure/allure-result.png" width="350px" height="350px"/></p>
+
+To generate an allure-report you should use the command
+
+> allure generate --clean
+
+To view the results of the tests. Then open allure-report -> index.html
+
+<p align="left"><img src="../vanilla/docs/allure/allure-report.png" width="340px" height="340px"/></p>
+
+### An example of allure-report
+
+<p align="center"><img src="../vanilla/docs/allure/allure-result-3.png" width="850px" height="600px"/></p>
+<p align="center"><img src="../vanilla/docs/allure/allure-result-1.png" width="950px" height="600px"/></p>
+<p align="center"><img src="../vanilla/docs/allure/allure-result-2.png" width="950px" height="600px"/></p>
+
+### Note to allure-report:
+1. Screenshots are added to the report if the test fails
+2. Steps and additional parameters are customizable
+
