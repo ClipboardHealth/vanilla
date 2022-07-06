@@ -1,28 +1,11 @@
-# Assignment
+# Assignement OverView
 
-[Click here to read the assignment](./docs/assignment.md)
+- Tried to use and add to existing framework in JUnit
+- Thought of Using Hamcrest Assertions but since there was only 1 assertion it test, did not add the overhead
+- Added the page verification for each page(using wait option.If element not found, timeout exception will be thrown)
+- As of now used class variables to store the By Object of locators. This can be further improved with custom junit annotation to return a WebElement/WrappedWebElement
+- Wanted to give docker a try unfortunately my personal laptop is unable to bear the load of docker service and was taking lot longer.
 
-## vanilla
-
-This is a base starter kit framework that you can use to build your tests for the above assignment.
-However, if you are more comfortable with your own tool kit, feel free to use that as well!
-
-## External dependencies
-
-For this project to run, you would need to install below 3 dependencies on your machine:
-
-- **[Java 11](https://openjdk.java.net/projects/jdk/11/)** (as the core programming language)
-- **[Maven 3.8.5](https://maven.apache.org/download.cgi)** (for dependency management)
-- **[Google Chrome latest version](https://www.google.com/chrome/?brand=CHBD&gclid=Cj0KCQjwr-SSBhC9ARIsANhzu15P0PA-n9Zp4NpxKaOHVGtBD1TZQH0HlQQE6hUfsOFAU1nf-Rzdlf4aAoTJEALw_wcB&gclsrc=aw.ds)** (browser to run your tests)
-
-> If your JAVA_HOME is set to anything other than JDK 11, you would need to update the path. Else your project
-> will not run. Also, do remember to set the correct JDK settings in your IDE.
-
-## Getting Started
-
-For easiest way to getting started, extract this project and open it from IntelliJ.
-> Then Do a dry run on test in : test -> java -> TestSandbox class and see if your setup is correct.  
-
-Tip: Do remember to update this readme file for anything else that you think needs updating here!
-
-## Success
+# How to run
+- Test can be run by just right clicking on com.amazon.TestAssignment.java class and selecting run as Junit.
+- To run from terminal (Maven has to be installed) ,run command "mvn clean test -DHOST=host.localhost"

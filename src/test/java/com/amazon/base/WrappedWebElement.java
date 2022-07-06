@@ -5,20 +5,26 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.Rectangle;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
+//Wrapper class on WebElement interface to add some additional functionality to WebElement object.
+public class WrappedWebElement implements WebElement {
 
-public class WrappedWebElement implements WebElement{
-	
 	public WebElement element;
+	public WrappedWebDriver driver;
 
-    public WrappedWebElement(WebElement element){
-        this.element = element;
-    }
+	public WrappedWebElement(WrappedWebDriver driver, WebElement element) {
+		this.element = element;
+		this.driver = driver;
+	}
+
+	public WebElement getWebElement() {
+		return this.element;
+	}
 
 	@Override
 	public <X> X getScreenshotAs(OutputType<X> target) throws WebDriverException {
@@ -28,25 +34,25 @@ public class WrappedWebElement implements WebElement{
 	@Override
 	public void click() {
 		element.click();
-		
+
 	}
 
 	@Override
 	public void submit() {
 		element.submit();
-		
+
 	}
 
 	@Override
 	public void sendKeys(CharSequence... keysToSend) {
 		element.sendKeys(keysToSend);
-		
+
 	}
 
 	@Override
 	public void clear() {
 		element.clear();
-		
+
 	}
 
 	@Override
@@ -75,22 +81,22 @@ public class WrappedWebElement implements WebElement{
 	}
 
 	public List<WrappedWebElement> findElementsEx(By by) {
-		List<WebElement> elements = findElements(by);
-		List<WrappedWebElement> list =  new ArrayList<WrappedWebElement>();
-		elements.stream().forEach(ele -> list.add( new WrappedWebElement(ele)));
+		List<WebElement> elements = element.findElements(by);
+		List<WrappedWebElement> list = new ArrayList<WrappedWebElement>();
+		elements.stream().forEach(ele -> list.add(new WrappedWebElement(new WrappedWebDriver(driver), ele)));
 		return list;
 	}
-	
+
 	@Override
 	public List<WebElement> findElements(By by) {
 		new Exception("Please use findElementsEx");
 		return null;
-	
+
 	}
 
 	@Override
 	public WrappedWebElement findElement(By by) {
-		return new WrappedWebElement(element.findElement(by));
+		return new WrappedWebElement(driver, element.findElement(by));
 	}
 
 	@Override
@@ -116,6 +122,11 @@ public class WrappedWebElement implements WebElement{
 	@Override
 	public String getCssValue(String propertyName) {
 		return element.getCssValue(propertyName);
+	}
+
+	public void scrollIntoView() {
+		JavascriptExecutor j = (JavascriptExecutor) driver.getWebDriver();
+		j.executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'nearest'})", element);
 	}
 
 }

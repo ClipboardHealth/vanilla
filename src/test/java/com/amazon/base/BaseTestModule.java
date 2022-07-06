@@ -13,8 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-
-public class BaseTestModule extends PageFactory {
+// BaseTestModule has the setup and teardown methods and also common usable methods
+public class BaseTestModule extends PageResolver {
 
 	private static Config config = EnvFactory.getInstance().getConfig();
     private static final String HOME_PAGE_URL = config.getString("HOME_PAGE_URL");
@@ -24,6 +24,7 @@ public class BaseTestModule extends PageFactory {
     void setupDriverObject() {
     	driver = new ThreadLocal<>();
     	driver.set(new WrappedWebDriver(DriverFactory.getDriver()));
+   
     }
     
     @AfterEach
@@ -43,10 +44,6 @@ public class BaseTestModule extends PageFactory {
      */
     public String getUrl() {
     	return HOME_PAGE_URL;
-    }
-    
-    public HomePage getHomePage() {
-    	return (HomePage) getPage(driver.get(), HomePage.class);
     }
     
  
