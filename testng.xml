@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <listeners>
+        <listener class-name="com.assignment.listeners.TestListener"/>
+    </listeners>
+    <test verbose="1" thread-count="1" parallel="methods" name="C:/Users/testi/selenium-project/MasterAutomationFramework/AmazonAssignment">
+        <classes>
+            <class name="com.assignment.tests.ValidateAbtSectionInProductPageTest">
+                <methods>
+                    <include name="verifyAbtSectionInSecondHighestTvItem"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
