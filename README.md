@@ -15,6 +15,21 @@ Validate “AboutThisItem” section presence in second highest priced item
 8. Switch the Window
 9. Assert that “About this item” section is present and log this section text to console/report.
 
+## Running Tests :
+
+Prerequisites: Java 8+ , Maven 3.6.3 Installed and path set
+
+1. There are multiple ways to run the tests. During development phase you can use the **testng.xml** present in the root folder to run. Right click and choose run.
+2. Each of the testng xml file should contain the test classes to pick for the run.
+3. User can also choose the thread-count parameter to run the tests in parallel.
+4. User can also choose to run via maven commands which is highly recommended.
+5. Maven profiles are configured in the pom.xml. You can run these from IDE Terminal or any OS Terminal inside the
+   project folder.
+
+`mvn clean test -Pall` - To run all the tests available in the testng.xml
+
+Note : User should not try to run the test from test class - Might end up in NPE. Because the listeners are configured only in testng.xml
+
 ## Libraries Used :
 
 1. **Selenium** - Web Automation
@@ -47,21 +62,6 @@ Prerequisites: Java 8+ , Maven 3.6.3 Installed and path set
 4. All the tests should be follow AAA pattern - **ARRANGE, ACT and ASSERT**
 5. Have maximum of one to two assertions per test.
 6. Tests should interact only with the Facade layer. This can be used to wrap the business logic.
-
-## Running Tests :
-
-Prerequisites: Java 8+ , Maven 3.6.3 Installed and path set
-
-1. There are multiple ways to run the tests. During development phase you can use the **testng.xml** present in the root folder to run. Right click and choose run.
-2. Each of the testng xml file should contain the test classes to pick for the run.
-3. User can also choose the thread-count parameter to run the tests in parallel.
-4. User can also choose to run via maven commands which is highly recommended.
-5. Maven profiles are configured in the pom.xml. You can run these from IDE Terminal or any OS Terminal inside the
-   project folder.
-
-`mvn clean test -Pall` - To run all the tests available in the testng.xml
-
-Note : User should not try to run the test from test class - Might end up in NPE. Because the listeners are configured only in testng.xml
 
 ## Questions :
 Framework developed by Amuthansakthivel
