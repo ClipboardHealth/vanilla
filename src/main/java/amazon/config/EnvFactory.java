@@ -31,7 +31,7 @@ public class EnvFactory {
         Config baseConfig = choicesConfig.withFallback(applicationConfig);
 
         String host = baseConfig.getString("HOST");
-        String appEnv = baseConfig.getString("APP_ENV");
+        java.lang.String appEnv = baseConfig.getString("APP_ENV");
 
         // assert that the host and app choice we fetched from application.conf are actually valid Host and App as specified in Host and App enum classes.
         Host.parse(host);
